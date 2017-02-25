@@ -1,0 +1,9 @@
+
+public class User {
+	
+	//Fields
+	private String userName;
+	private String password;
+	private String name;
+	
+}
