@@ -5,6 +5,9 @@ import javax.swing.*;
 
 public class LoginFrame extends JFrame{
 	
+	//Field
+	private DataBase data;
+	
 	//Fields
 	private JPanel mainPanel;
 	private JLabel userName;
@@ -14,7 +17,9 @@ public class LoginFrame extends JFrame{
 	private JButton loginButton;
 	
 	//Constructor
-	public LoginFrame(){
+	public LoginFrame(DataBase d){
+		this.data = d;
+		
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new GridLayout(2, 3));
 		userName = new JLabel("User Name: ");
