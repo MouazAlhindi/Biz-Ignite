@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.*;
 
@@ -55,19 +56,27 @@ public class LoginFrame extends JFrame{
 	//Methods
 	public void authenticateUser(){
 		ArrayList<User> uList = data.getUsers();
+		boolean found = false;					// added boolean to check if account is found
 		
 		for(User u: uList){
-			if(userNameInput.getText() == u.getUserName() && passwordInput.getText() == u.getPassword() && u.getClearance() == true){
+			if(userNameInput.getText().equals(u.getUserName()) && passwordInput.getText().equals(u.getPassword()) && u.getClearance() == true){
 				//Manager Frame will be opened and login frame will be closed
-			} else if (userNameInput.getText() == u.getUserName() && passwordInput.getText() == u.getPassword() && u.getClearance() == false){
+				System.out.println("Start Manager Frame");
+				found = true;
+			} else if (userNameInput.getText().equals(u.getUserName()) && passwordInput.getText().equals(u.getPassword()) && u.getClearance() == false){
 				//Employee Frame will be opened and login frame will be close
-			} else {
-				System.out.println("Failed Login");
-				JOptionPane.showMessageDialog(null, "Invalid Username or Password.\nTry Again!");
-				userNameInput.setText("");
-				passwordInput.setText("");
+				System.out.println("Start Employee Frame");
+				found = true;
 			}
 		}
+		//only occurs if an account match is not found
+		if(!found){
+			
+			System.out.println("Failed Login");
+			JOptionPane.showMessageDialog(null, "Invalid Username or Password.\nTry Again!");
+			userNameInput.setText("");
+			passwordInput.setText("");
+		}		
 	}
 	
 	//ButtonListener
@@ -86,8 +95,12 @@ public class LoginFrame extends JFrame{
 			String n2 = JOptionPane.showInputDialog("Input Desired Username: ");
 			String n3 = JOptionPane.showInputDialog("Input Password: ");
 			
-			data.getUsers().add(new Manager(n1, n2, n2));
-			System.out.println(data.getUsers());
+			data.getUsers().add(new Manager(n1, n2, n3));
+			ArrayList<User> temp = data.getUsers();
+			for(int i = 0; i < temp.size(); i++){
+				
+				System.out.println(temp.get(i));
+			}
 			
 		}
 	}
