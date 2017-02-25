@@ -6,6 +6,7 @@ public class Inventory {
 	private ArrayList<Product> inventoryList = new ArrayList<Product>(); 
 	private int size;
 	
+	
 	//CONSTRUCTORS
 	
 	public Inventory() {
