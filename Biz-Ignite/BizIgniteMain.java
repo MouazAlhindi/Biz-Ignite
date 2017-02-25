@@ -1,5 +1,5 @@
 /* Class that will hold the main method
- * 
+ * Login frame with singup functionality
  */
 
 public class BizIgniteMain {

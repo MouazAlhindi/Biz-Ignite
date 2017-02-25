@@ -31,4 +31,5 @@ public class User {
 	public boolean getClearance(){
 		return clearance;
 	}
+	
 }

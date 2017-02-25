@@ -18,7 +18,6 @@ public class DataBase {
 	
 	//Method
 	
-	
 	//Returns List of Users
 	public ArrayList<User> getUsers(){
 		return userList;
