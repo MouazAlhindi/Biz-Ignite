@@ -13,4 +13,5 @@ public class BizIgniteMain {
 		lgFrame = new LoginFrame(mainData);
 	}
 	//Static Methods
+	
 }
