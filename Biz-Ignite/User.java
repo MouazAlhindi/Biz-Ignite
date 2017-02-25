@@ -32,4 +32,9 @@ public class User {
 		return clearance;
 	}
 	
+	public String toString(){
+		
+		return userName;
+	}
+	
 }
