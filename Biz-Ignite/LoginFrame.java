@@ -64,6 +64,7 @@ public class LoginFrame extends JFrame{
 			if(userNameInput.getText().equals(u.getUserName()) && passwordInput.getText().equals(u.getPassword()) && u.getClearance() == true){
 				//Manager Frame will be opened and login frame will be closed
 				System.out.println("Start Manager Frame");
+				EmployeeFrame empFrame = new EmployeeFrame(u.getCompanyName());
 				found = true;
 			} else if (userNameInput.getText().equals(u.getUserName()) && passwordInput.getText().equals(u.getPassword()) && u.getClearance() == false){
 				//Employee Frame will be opened and login frame will be close
@@ -95,10 +96,11 @@ public class LoginFrame extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e){
 			String n1 = JOptionPane.showInputDialog("Enter Name: ");
-			String n2 = JOptionPane.showInputDialog("Input Desired Username: ");
-			String n3 = JOptionPane.showInputDialog("Input Password: ");
+			String n2 = JOptionPane.showInputDialog("Compnay Name: ");
+			String n3 = JOptionPane.showInputDialog("Input Desired Username: ");
+			String n4 = JOptionPane.showInputDialog("Input Password: ");
 			
-			data.getUsers().add(new Manager(n1, n2, n3));
+			data.getUsers().add(new Manager(n1, n3, n4, n2));
 			
 			//Console Data
 			ArrayList<User> temp = data.getUsers();

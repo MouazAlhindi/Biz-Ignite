@@ -5,13 +5,15 @@ public class User {
 	private String userName;
 	private String password;
 	private String name;
+	private String companyName;
 	private boolean clearance;
 	
 	//Constructor
-	public User(String u, String p, String n, boolean b){
+	public User(String u, String p, String n, String c, boolean b){
 		this.userName = u;
 		this.password = p;
 		this.name = n;
+		this.companyName = c;
 		this.clearance = b;
 	}
 	
@@ -26,6 +28,10 @@ public class User {
 	
 	public String getName(){
 		return name;
+	}
+	
+	public String getCompanyName(){
+		return companyName;
 	}
 	
 	public boolean getClearance(){
