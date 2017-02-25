@@ -64,11 +64,13 @@ public class LoginFrame extends JFrame{
 			if(userNameInput.getText().equals(u.getUserName()) && passwordInput.getText().equals(u.getPassword()) && u.getClearance() == true){
 				//Manager Frame will be opened and login frame will be closed
 				System.out.println("Start Manager Frame");
-				EmployeeFrame empFrame = new EmployeeFrame(u.getCompanyName());
+				new ManagerFrame();
+				dispose();
 				found = true;
 			} else if (userNameInput.getText().equals(u.getUserName()) && passwordInput.getText().equals(u.getPassword()) && u.getClearance() == false){
 				//Employee Frame will be opened and login frame will be close
 				System.out.println("Start Employee Frame");
+				EmployeeFrame empFrame = new EmployeeFrame(u.getCompanyName(), data);
 				found = true;
 			}
 		}

@@ -23,7 +23,10 @@ public class EmployeeFrame extends JFrame{
 	
 	
 	//Constructor
-	public EmployeeFrame(String companyName){
+	public EmployeeFrame(String companyName, DataBase d){
+		
+		//initialize DataBase
+		this.data = d;
 		
 		//Initalize componenets
 		taskPanel = new JPanel();
