@@ -32,6 +32,7 @@ public class User {
 		return clearance;
 	}
 	
+	//toString method for testing
 	public String toString(){
 		
 		return userName;

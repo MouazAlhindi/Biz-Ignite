@@ -56,7 +56,7 @@ public class LoginFrame extends JFrame{
 	//Methods
 	public void authenticateUser(){
 		ArrayList<User> uList = data.getUsers();
-		boolean found = false;
+		boolean found = false;					// added boolean to check if account is found
 		
 		for(User u: uList){
 			if(userNameInput.getText().equals(u.getUserName()) && passwordInput.getText().equals(u.getPassword()) && u.getClearance() == true){
@@ -69,6 +69,7 @@ public class LoginFrame extends JFrame{
 				found = true;
 			}
 		}
+		//only occurs if an account match is not found
 		if(!found){
 			
 			System.out.println("Failed Login");
