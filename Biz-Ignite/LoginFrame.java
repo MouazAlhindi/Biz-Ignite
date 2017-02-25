@@ -105,7 +105,6 @@ public class LoginFrame extends JFrame{
 			for(int i = 0; i < temp.size(); i++){
 				System.out.println(temp.get(i));
 			}
-			
 		}
 	}
 	
