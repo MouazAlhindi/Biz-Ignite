@@ -1,17 +1,9 @@
 
 public class Expenditures extends Money{
 
-	private double amount;
-	//Constructor
-	public Expenditures(String s, double d){
-		
+	public Expenditures(String s) {
 		super(s);
-		amount = -d;
+		// TODO Auto-generated constructor stub
 	}
-	
-	//getter method
-	public double getAmount(){
-		
-		return amount;
-	}
+
 }

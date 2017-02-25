@@ -6,7 +6,7 @@ public class Employee extends User{
 	private ArrayList<Task> taskList = new ArrayList<Task>();
 	
 	public Employee(String x, String y, String z, int id){
-		super(x, y, z);
+		super(x, y, z, false);
 		
 		this.idNum = id;
 	}
