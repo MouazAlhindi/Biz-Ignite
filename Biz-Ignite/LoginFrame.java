@@ -16,9 +16,10 @@ public class LoginFrame extends JFrame{
 	//Constructor
 	public LoginFrame(){
 		mainPanel = new JPanel();
-		userName = new JLabel();
+		mainPanel.setLayout(new GridLayout(2, 3));
+		userName = new JLabel("User Name: ");
 		userNameInput = new JTextField();
-		password = new JLabel();
+		password = new JLabel("Password: ");
 		passwordInput = new JTextField();
 		loginButton = new JButton("Login");
 		loginButton.addActionListener(new LoginButtonListener());
