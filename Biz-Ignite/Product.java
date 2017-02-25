@@ -1,21 +1,22 @@
 public class Product {
 
-	//fields
+	//FIELDS
 	
 	private String name;
-	private int price;
+	private double price;
 	private int amountInStock;
 
-	//constructors 
-		
-	public Product() {
-		name = null;
-		price = 0;
-		amountInStock = 0;
+	//CONSTRUCTORS 
+	
+	public Product(String name, double price, int amountInStock) {
+		this.name = name;
+		this.price = price;
+		this.amountInStock = amountInStock;
 	}
 	
-	//methods
+	//METHODS
 
+	//getters and setters
 	public String getName() {
 		return name;
 	}
@@ -24,7 +25,7 @@ public class Product {
 		this.name = name;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
@@ -40,6 +41,15 @@ public class Product {
 		this.amountInStock = amountInStock;
 	}
 	
+	//methods that add and remove int n amount of a certain product
+	public void add(int n) {
+		amountInStock += n;
+	}
+	public void remove(int n) {
+		amountInStock -= n;
+	}
+	
+	//prints out products
 	public String toString() {
 		return "Product: " + name + "\tPrice: " + price + "\tAmount In Stock: " + amountInStock;
 	}
