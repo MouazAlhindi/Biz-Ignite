@@ -8,7 +8,7 @@ public class Expenditures extends Money{
 		super(s);
 		amount = -d;
 	}
-	
+	//getter
 	public double getAmount(){
 		
 		return amount;
