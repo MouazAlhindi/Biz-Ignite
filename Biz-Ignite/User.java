@@ -5,12 +5,14 @@ public class User {
 	private String userName;
 	private String password;
 	private String name;
+	private boolean clearance;
 	
 	//Constructor
-	public User(String u, String p, String n){
+	public User(String u, String p, String n, boolean b){
 		this.userName = u;
 		this.password = p;
 		this.name = n;
+		this.clearance = b;
 	}
 	
 	//Accessor Methods
@@ -24,5 +26,9 @@ public class User {
 	
 	public String getName(){
 		return name;
+	}
+	
+	public boolean getClearance(){
+		return clearance;
 	}
 }
