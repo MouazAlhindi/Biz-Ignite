@@ -22,8 +22,10 @@ public class LoginFrame extends JFrame{
 	
 	//Constructor
 	public LoginFrame(DataBase d){
+		//Refrence to database
 		this.data = d;
 		
+		//JComponements for Login Frame
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new GridLayout(3, 2));
 		userName = new JLabel("User Name: ");
@@ -36,7 +38,6 @@ public class LoginFrame extends JFrame{
 		signupButton.addActionListener(new SignupButtonListener());
 		
 		//Add jcomponents to the frame
-		
 		mainPanel.add(userName);
 		mainPanel.add(userNameInput);
 		mainPanel.add(password);
@@ -45,6 +46,7 @@ public class LoginFrame extends JFrame{
 		mainPanel.add(signupButton);
 		add(mainPanel);
 		
+		//Setup JFrame
 		setTitle("Biz Ignite Login");
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,10 +64,13 @@ public class LoginFrame extends JFrame{
 			if(userNameInput.getText().equals(u.getUserName()) && passwordInput.getText().equals(u.getPassword()) && u.getClearance() == true){
 				//Manager Frame will be opened and login frame will be closed
 				System.out.println("Start Manager Frame");
+				new ManagerFrame();
+				dispose();
 				found = true;
 			} else if (userNameInput.getText().equals(u.getUserName()) && passwordInput.getText().equals(u.getPassword()) && u.getClearance() == false){
 				//Employee Frame will be opened and login frame will be close
 				System.out.println("Start Employee Frame");
+				EmployeeFrame empFrame = new EmployeeFrame(u.getCompanyName(), data);
 				found = true;
 			}
 		}
@@ -79,7 +84,7 @@ public class LoginFrame extends JFrame{
 		}		
 	}
 	
-	//ButtonListener
+	// Login Button Listener
 	public class LoginButtonListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -88,20 +93,22 @@ public class LoginFrame extends JFrame{
 		}
 	}
 	
+	//Signup Button Listener
 	public class SignupButtonListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e){
 			String n1 = JOptionPane.showInputDialog("Enter Name: ");
-			String n2 = JOptionPane.showInputDialog("Input Desired Username: ");
-			String n3 = JOptionPane.showInputDialog("Input Password: ");
+			String n2 = JOptionPane.showInputDialog("Compnay Name: ");
+			String n3 = JOptionPane.showInputDialog("Input Desired Username: ");
+			String n4 = JOptionPane.showInputDialog("Input Password: ");
 			
-			data.getUsers().add(new Manager(n1, n2, n3));
+			data.getUsers().add(new Manager(n1, n3, n4, n2));
+			
+			//Console Data
 			ArrayList<User> temp = data.getUsers();
 			for(int i = 0; i < temp.size(); i++){
-				
 				System.out.println(temp.get(i));
 			}
-			
 		}
 	}
 	
