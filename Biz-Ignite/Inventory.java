@@ -10,7 +10,6 @@ public class Inventory {
 	//CONSTRUCTORS
 	
 	public Inventory() {
-		inventoryList = null;
 		size = 0;
 	}
 	
@@ -38,7 +37,7 @@ public class Inventory {
 			}
 		}
 		for(int i = 0; i < inventoryList.size(); i++) {
-			if (p.getName().compareToIgnoreCase(inventoryList.get(i).getName()) < 0) {
+			if (p.getName().compareToIgnoreCase(inventoryList.get(i).getName()) > 0) {
 				inventoryList.add(i, p);
 				size++;
 				return true;
@@ -55,13 +54,11 @@ public class Inventory {
 		
 		if(inventoryList.size() == 0){
 			return "";
-		}
-		if(inventoryList.size() == 1) {
+		} else if(inventoryList.size() == 1) {
 			return inventoryList.get(0).toString();
-		}
-		else{
-			for (Product p: inventoryList){
-				result.append(p);
+		} else {
+			for (int i = inventoryList.size() - 1; i >= 0; i--){
+				result.append(inventoryList.get(i));
 				result.append("\n");
 			}
 		}
