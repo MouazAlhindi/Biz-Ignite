@@ -6,7 +6,7 @@ public class Product {
 	private int price;
 	private int amountInStock;
 
-	//constructors
+	//constructors 
 		
 	public Product() {
 		name = null;

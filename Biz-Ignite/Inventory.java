@@ -3,7 +3,7 @@ public class Inventory {
 
 	//fields
 	
-	private ArrayList<Product> inventory = new ArrayList<Product>();
+	private ArrayList<Product> inventory = new ArrayList<Product>(); 
 	
 	//constructors
 	
