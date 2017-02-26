@@ -18,8 +18,6 @@ public class EmployeeFrame extends JFrame{
 	//JComponenets
 	private JPanel taskPanel;
 	private JLabel taskLabel;
-	//private DefaultListModel<Task> modelList;
-	private ArrayList<Task> tList;
 	private JScrollPane scroll;
 	private JList<Task> taskList;
 	private JButton completeButton;
@@ -36,8 +34,6 @@ public class EmployeeFrame extends JFrame{
 		taskPanel = new JPanel();
 		taskPanel.setLayout(new BorderLayout());
 		taskLabel = new JLabel("Tasks");
-		//modelList = new DefaultListModel<Task>();
-		tList = data.getTaskList();
 		taskList = new JList(data.getTaskArray());
 		scroll = new JScrollPane(taskList);
 		completeButton = new JButton("Completed Task");
