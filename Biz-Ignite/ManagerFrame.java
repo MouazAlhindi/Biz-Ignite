@@ -21,7 +21,7 @@ public class ManagerFrame extends JFrame{
 	
 	private JList employeeList;
 	
-	
+	//constructor
 	public ManagerFrame(DataBase d){
 		
 		this.data = d;
