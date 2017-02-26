@@ -35,7 +35,7 @@ public class EmployeeFrame extends JFrame{
 		taskPanel.setLayout(new BorderLayout());
 		taskLabel = new JLabel("Tasks");
 		model = new DefaultListModel();
-		taskList = new JList(model);
+		taskList = new JList<Task>(model);
 		scroll = new JScrollPane(taskList);
 		completeButton = new JButton("Completed Task");
 		completeButton.addActionListener(new CompleteButtonListener());

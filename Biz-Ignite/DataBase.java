@@ -37,6 +37,10 @@ public class DataBase {
 		return userList;
 	}
 	
+	public void addUser(User i){
+		userList.add(i);
+	}
+	
 	//returns arraylist of employees
 	public ArrayList<Employee> getEmployeesArrayList(){
 		

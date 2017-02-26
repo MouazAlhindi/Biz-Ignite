@@ -18,4 +18,8 @@ public class Employee extends User{
 	public int getIdNum(){
 		return idNum;
 	}
+	
+	public ArrayList<Task> getTaskList(){
+		return taskList;
+	}
 }

@@ -1,7 +1,9 @@
+import java.awt.*;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.*;
@@ -13,8 +15,9 @@ public class ManagerFrame extends JFrame{
 	private JTabbedPane tabbedFrame= new JTabbedPane();
 	
 	//Panel Objects
-	private JPanel employeeNames = new JPanel();
-	private JPanel employeeTasks = new JPanel();
+	private JPanel mainEmployeePanel;
+	private JPanel employeep1;
+	private JPanel employeep2;
 	private JPanel mainInventoryPanel = new JPanel();
 	private JPanel inventoryp1 = new JPanel();
 	private JPanel inventoryp2 = new JPanel();
@@ -33,7 +36,11 @@ public class ManagerFrame extends JFrame{
 	
 	//Employee Tab
 	//Employee tab componenets
+	private JLabel taskLabel;
+	private DefaultListModel taskModel;
+	private JList empTask;
 	private JLabel empListLabel;
+	private DefaultListModel model;
 	private JList employeeList;
 	private JButton addTaskButton;
 	private JButton addEmployeeButton;
@@ -140,18 +147,27 @@ public class ManagerFrame extends JFrame{
 	private void setEmployeeTab() {
 		
 		//initalize Employee componenets
+		mainEmployeePanel = new JPanel();
+		mainEmployeePanel.setLayout(new BorderLayout());
+		employeep1 = new JPanel();
+		employeep1.setLayout(new BoxLayout(employeep1, BoxLayout.Y_AXIS));
+		employeep2 = new JPanel();
 		empListLabel = new JLabel("Employee List");
-		employeeList = new JList(); //Arg String[]
+		model = new DefaultListModel();
+		employeeList = new JList(model); //Arg String[]
+		taskLabel = new JLabel("Employee Task List");
+		taskModel = new DefaultListModel();
+		empTask = new JList(taskModel);
+		
 		addTaskButton = new JButton("Add Task");
 		addTaskButton.addActionListener(new AddTaskListener());
 		addEmployeeButton = new JButton("Add Employee");
+		addEmployeeButton.addActionListener(new AddEmployeeListener());
 		
-		DefaultListModel d = new DefaultListModel();
 		for(int i = 0; i < data.getEmployeesArrayList().size(); i++){
-			
-			d.addElement(data.getEmployeesArrayList().get(i));
+			model.addElement(data.getEmployeesArrayList().get(i));
 		}
-		employeeList = new JList(d);
+
 		employeeList.setVisibleRowCount(data.getUsers().size());
 		employeeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		add(new JScrollPane(employeeList));
@@ -159,14 +175,32 @@ public class ManagerFrame extends JFrame{
 		employeeList.addListSelectionListener(new ListSelectionListener(){
 			
 			public void valueChanged(ListSelectionEvent event){
+				taskModel.clear();
 				
 				//update employee's displayed tasks
+				ArrayList<Task> tList =  ((Employee) employeeList.getSelectedValue()).getTaskList();
+				for(Task t: tList){
+					taskModel.addElement(t);
+				}
 			}
 		});
 		
-		employeeNames.add(employeeList);
-		tabbedFrame.add("Employees", employeeNames);
+		employeep1.add(empListLabel);
+		employeep1.add(employeeList);
+		employeep1.add(addTaskButton);
+		employeep1.add(addEmployeeButton);
+		
+		employeep2.add(taskLabel);
+		employeep2.add(empTask);
+		
+		mainEmployeePanel.add(employeep1, BorderLayout.WEST);
+		mainEmployeePanel.add(employeep2, BorderLayout.EAST);
+		tabbedFrame.add("Employees", mainEmployeePanel);
 	}
+	
+	/*********************************************************
+	 					Button Listeners
+	 *********************************************************/
 	
 	//OrderButtonListener
 	public class OrderButtonListener implements ActionListener{
@@ -183,7 +217,18 @@ public class ManagerFrame extends JFrame{
 	public class AddTaskListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			String n1 = JOptionPane.showInputDialog("Enter Task Description: ");
+			int i = ((Employee) (employeeList.getSelectedValue())).getIdNum();
 			
+			((Employee) (employeeList.getSelectedValue())).addTask(new Task(n1, i));
+			
+			taskModel.clear();
+			
+			//update employee's displayed tasks
+			ArrayList<Task> tList =  ((Employee) employeeList.getSelectedValue()).getTaskList();
+			for(Task t: tList){
+				taskModel.addElement(t);
+			}
 			
 		}
 		
@@ -193,6 +238,17 @@ public class ManagerFrame extends JFrame{
 	public class AddEmployeeListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			String n1 = JOptionPane.showInputDialog("Enter Name: ");
+			String n2 = JOptionPane.showInputDialog("Compnay Name: ");
+			String n3 = JOptionPane.showInputDialog("Input Desired Username: ");
+			String n4 = JOptionPane.showInputDialog("Input Password: ");
+			int i = Integer.parseInt(JOptionPane.showInputDialog("Input Employee ID Number: "));
+			
+			Employee emp = new Employee(n1, n3, n4, n2, i);
+			
+			data.getUsers().add(emp);
+			
+			model.addElement(emp);
 			
 		}
 		
