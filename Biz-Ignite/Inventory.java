@@ -11,6 +11,10 @@ public class Inventory {
 	
 	public Inventory() {
 		size = 0;
+		
+		for(int i = 0; i < 10; i++){
+			inventoryList.add(new Product("String: " + i, i * 10, 100));
+		}
 	}
 	
 	//METHODS

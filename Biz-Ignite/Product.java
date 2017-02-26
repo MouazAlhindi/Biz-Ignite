@@ -46,6 +46,7 @@ public class Product {
 	public void add(int n) {
 		amountInStock += n;
 	}
+	
 	public void remove(int n) {
 		amountInStock -= n;
 	}
