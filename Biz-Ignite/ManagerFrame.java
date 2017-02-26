@@ -1,5 +1,8 @@
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.event.*;
+import java.util.Arrays;
+
 import javax.swing.*;
 import javax.swing.event.*;
 
@@ -7,15 +10,16 @@ public class ManagerFrame extends JFrame{
 
 	private JTabbedPane tabbedFrame= new JTabbedPane();
 	
-	private JPanel employeeTab = new JPanel();
+	private JPanel employeeNames = new JPanel();
+	private JPanel employeeTasks = new JPanel();
 	private JPanel inventoryTab = new JPanel();
 	private JPanel financesTab = new JPanel();
 	
-	private JTable table = new JTable();
+	private JTable inventoryIable = new JTable();
 	
 	private DataBase data;
 	
-	private JList<String> list = new JList<String>(data.getUsersArray());
+	private JList employeeList;
 	
 	
 	public ManagerFrame(DataBase d){
@@ -24,7 +28,7 @@ public class ManagerFrame extends JFrame{
 		
 		setEmployeeTab();
 		setInventoryTab();
-		setFinancesTab();
+		//setFinancesTab();
 		
 		add(tabbedFrame);
 		setTitle("Manager View");
@@ -52,28 +56,33 @@ public class ManagerFrame extends JFrame{
 			
 		}
 		
-		table = new JTable(inventory, columnNames);
-		table.setPreferredScrollableViewportSize(new Dimension(500,500));
-		table.setFillsViewportHeight(true);
-		JScrollPane scrollPane = new JScrollPane(table);
+		inventoryIable = new JTable(inventory, columnNames);
+		inventoryIable.setPreferredScrollableViewportSize(new Dimension(500,500));
+		inventoryIable.setFillsViewportHeight(true);
+		JScrollPane scrollPane = new JScrollPane(inventoryIable);
 		add(scrollPane);
+		
+		inventoryTab.add(inventoryIable);
 		tabbedFrame.add("Inventory", inventoryTab);
 	}
 
 	private void setEmployeeTab() {
 		
-		list.setVisibleRowCount(data.getUsers().size());
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		add(new JScrollPane(list));
+		employeeList = new JList(data.getUsersArray());
+		employeeList.setVisibleRowCount(data.getUsers().size());
+		employeeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		add(new JScrollPane(employeeList));
 		
-		list.addListSelectionListener(new ListSelectionListener(){
+		employeeList.addListSelectionListener(new ListSelectionListener(){
 			
 			public void valueChanged(ListSelectionEvent event){
 				
-				//update other list.
+				//update employee's displayed tasks.
 			}
 		});
-		tabbedFrame.add("Employees", employeeTab);
+		
+		employeeNames.add(employeeList);
+		tabbedFrame.add("Employees", employeeNames);
 	}
 	
 }
