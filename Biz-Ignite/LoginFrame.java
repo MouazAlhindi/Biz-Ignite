@@ -50,7 +50,7 @@ public class LoginFrame extends JFrame{
 		setTitle("Biz Ignite Login");
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(700,700);
+		setSize(300,200);
 		
 		
 	}
