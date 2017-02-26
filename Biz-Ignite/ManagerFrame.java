@@ -73,33 +73,6 @@ public class ManagerFrame extends JFrame{
 								Inventory Tab
 	 **************************************************************************/
 	//initalizes top Panel Data
-	public String[][] getInventory2dArray(){
-		
-		String[][] inventory = new String[data.getInventoryFromDB().size()][3];
-		
-		mainInventoryPanel.setLayout(new GridLayout(2,1));
-		
-		for(int i = 0; i < inventory.length; i++){
-			inventory[i][0] = data.getInventoryFromDB().get(i).getName();
-			inventory[i][1] = ""+data.getInventoryFromDB().get(i).getPrice();
-			inventory[i][2] = ""+data.getInventoryFromDB().get(i).getAmountInStock();
-		}
-		
-		return inventory;
-	}
-	
-	public String[] getColumnNames(){
-		String[] columnNames = {"Product","Price","Quantity"};
-		return columnNames;
-	}
-	
-	public void updateInventoryData(){
-		for(Product p: data.getInventoryFromDB()){
-			productMenu.addItem(p);
-		}
-		
-		inventoryTable = new JTable(getInventory2dArray(), getColumnNames());
-	}
 	
 	private void setInventoryTab() {
 		
@@ -120,18 +93,12 @@ public class ManagerFrame extends JFrame{
 			productMenu.addItem(p);
 		}
 		
-		
-		
-		
 		inventoryTable = new JTable(getInventory2dArray(), getColumnNames());
 		inventoryTable.setPreferredScrollableViewportSize(new Dimension(500,500));
 		inventoryTable.setFillsViewportHeight(true);
 		JScrollPane scrollPane = new JScrollPane(inventoryTable);
 		add(scrollPane);
 		
-		
-		mainInventoryPanel.add(inventoryp1);
-		mainInventoryPanel.add(inventoryp2);
 		inventoryp1.add(inventoryTable);
 		
 		inventoryp2.add(productMenu);
@@ -141,9 +108,31 @@ public class ManagerFrame extends JFrame{
 		inventoryp2.add(orderButton);
 		inventoryp2.add(new JLabel());
 		
+		mainInventoryPanel.add(inventoryp1);
+		mainInventoryPanel.add(inventoryp2);
+		
 		tabbedFrame.add("Inventory", mainInventoryPanel);
 	}
 	
+	public String[][] getInventory2dArray(){
+		
+		String[][] inventory = new String[data.getInventoryFromDB().size()][3];
+		
+		mainInventoryPanel.setLayout(new GridLayout(2,1));
+		
+		for(int i = 0; i < inventory.length; i++){
+			inventory[i][0] = data.getInventoryFromDB().get(i).getName();
+			inventory[i][1] = ""+data.getInventoryFromDB().get(i).getPrice();
+			inventory[i][2] = ""+data.getInventoryFromDB().get(i).getAmountInStock();
+		}
+		
+		return inventory;
+	}
+
+	public String[] getColumnNames(){
+		String[] columnNames = {"Product","Price","Quantity"};
+		return columnNames;
+	}
 	/*************************************************************************
 								Employee Tab
 	 **************************************************************************/
@@ -157,8 +146,12 @@ public class ManagerFrame extends JFrame{
 		addTaskButton.addActionListener(new AddTaskListener());
 		addEmployeeButton = new JButton("Add Employee");
 		
-		
-		employeeList = new JList(data.getEmployeesArray());
+		DefaultListModel d = new DefaultListModel();
+		for(int i = 0; i < data.getEmployeesArrayList().size(); i++){
+			
+			d.addElement(data.getEmployeesArrayList().get(i));
+		}
+		employeeList = new JList(d);
 		employeeList.setVisibleRowCount(data.getUsers().size());
 		employeeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		add(new JScrollPane(employeeList));
@@ -181,7 +174,7 @@ public class ManagerFrame extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			Product desiredProduct = (Product) productMenu.getSelectedItem();
 			desiredProduct.add(Integer.parseInt(amountInput.getText()));
-			updateInventoryData();
+			tabbedFrame.repaint();
 		}
 		
 	}

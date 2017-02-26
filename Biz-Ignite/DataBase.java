@@ -38,14 +38,14 @@ public class DataBase {
 	}
 	
 	//returns String array of employees
-	public String[] getEmployeesArray(){
+	public ArrayList<Employee> getEmployeesArrayList(){
 		
-		String[] users = new String[userList.size()];
+		ArrayList<Employee> users = new ArrayList<Employee>();
 		for(int i = 0; i < userList.size(); i++){
 			
 			if(userList.get(i) instanceof Employee){
 				
-				users[i] = userList.get(i).getName();
+				users.add((Employee)userList.get(i));
 			}
 		}
 		return users;
