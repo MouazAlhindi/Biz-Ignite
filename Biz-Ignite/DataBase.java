@@ -13,6 +13,7 @@ public class DataBase {
 	
 	//Fields
 	private ArrayList<User> userList = new ArrayList<User>();
+	private Inventory inventory = new Inventory();
 	
 	//Constructor
 	
@@ -21,6 +22,21 @@ public class DataBase {
 	//Returns List of Users
 	public ArrayList<User> getUsers(){
 		return userList;
+	}
+	
+	public ArrayList<Product> getInventoryFromDB(){
+		
+		return inventory.getInventory();
+	}
+	
+	public String[] getUsersArray(){
+		
+		String[] users = new String[userList.size()];
+		for(int i = 0; i < userList.size(); i++){
+			
+			users[i] = userList.get(i).getName();
+		}
+		return users;
 	}
 	
 }

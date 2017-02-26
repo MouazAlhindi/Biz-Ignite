@@ -64,7 +64,7 @@ public class LoginFrame extends JFrame{
 			if(userNameInput.getText().equals(u.getUserName()) && passwordInput.getText().equals(u.getPassword()) && u.getClearance() == true){
 				//Manager Frame will be opened and login frame will be closed
 				System.out.println("Start Manager Frame");
-				new ManagerFrame();
+				new ManagerFrame(data);
 				dispose();
 				found = true;
 			} else if (userNameInput.getText().equals(u.getUserName()) && passwordInput.getText().equals(u.getPassword()) && u.getClearance() == false){
