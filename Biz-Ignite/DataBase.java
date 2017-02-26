@@ -37,7 +37,7 @@ public class DataBase {
 		return userList;
 	}
 	
-	//returns String array of employees
+	//returns arraylist of employees
 	public ArrayList<Employee> getEmployeesArrayList(){
 		
 		ArrayList<Employee> users = new ArrayList<Employee>();

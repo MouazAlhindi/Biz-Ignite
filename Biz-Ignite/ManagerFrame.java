@@ -160,7 +160,7 @@ public class ManagerFrame extends JFrame{
 			
 			public void valueChanged(ListSelectionEvent event){
 				
-				//update employee's displayed tasks.
+				//update employee's displayed tasks
 			}
 		});
 		
