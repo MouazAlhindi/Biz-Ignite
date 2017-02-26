@@ -21,7 +21,7 @@ public class EmployeeFrame extends JFrame{
 	private JScrollPane scroll;
 	private JList<Task> taskList;
 	private JButton completeButton;
-	
+	private DefaultListModel model;
 	
 	//Constructor
 	public EmployeeFrame(DataBase d, Employee e){
@@ -34,7 +34,8 @@ public class EmployeeFrame extends JFrame{
 		taskPanel = new JPanel();
 		taskPanel.setLayout(new BorderLayout());
 		taskLabel = new JLabel("Tasks");
-		taskList = new JList(data.getTaskArray());
+		model = new DefaultListModel();
+		taskList = new JList(model);
 		scroll = new JScrollPane(taskList);
 		completeButton = new JButton("Completed Task");
 		completeButton.addActionListener(new CompleteButtonListener());
@@ -52,6 +53,7 @@ public class EmployeeFrame extends JFrame{
 		setSize(500,500);
 		//pack();
 		
+		displayTasks();
 	}
 	
 	//Methods
@@ -61,15 +63,19 @@ public class EmployeeFrame extends JFrame{
 		
 		for(Task t: tList){
 			if(t.getAssignedEmp() == emp.getIdNum()){
-				finalList.add(t);
+				//finalList.add(t);
+				model.addElement(t);
 				System.out.println("Element Added: " + t.getTaskDescription());
 			}
 		}
-		String[] tasks = new String[finalList.size()];
 		
-		for(int i = 0; i > finalList.size(); i++){
+		/*
+		for(int i = 0; i < finalList.size(); i++){
 			tasks[i] = finalList.get(i).getTaskDescription();
+			System.out.println(tasks[i]);
 		}
+		*/
+		
 	}
 	
 	public void markTaskCompleted(){

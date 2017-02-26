@@ -26,4 +26,9 @@ public class Task {
 	public int getAssignedEmp(){
 		return empNumAssignment;
 	}
+	
+	//to String Method
+	public String toString(){
+		return taskDescription;
+	}
 }
