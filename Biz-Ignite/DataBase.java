@@ -14,19 +14,27 @@ public class DataBase {
 	//Fields
 	private ArrayList<User> userList = new ArrayList<User>();
 	private Inventory inventory = new Inventory();
+	private ArrayList<Task> taskList = new ArrayList<Task>();
 	
 	//Constructor
 	
-	//Method
+	//Methods
+	//Employee get Method
+	public Employee getEmployee(String u, String p){
+		for(User i: userList){
+			if(i instanceof Employee){
+				if(i.getUserName().equals(u) && i.getPassword().equals(p)){
+					return (Employee)(i);
+				}
+			}
+		}
+		return null;
+	}
 	
+	//USER METHODS
 	//Returns List of Users
 	public ArrayList<User> getUsers(){
 		return userList;
-	}
-	
-	public ArrayList<Product> getInventoryFromDB(){
-		
-		return inventory.getInventory();
 	}
 	
 	public String[] getUsersArray(){
@@ -39,4 +47,27 @@ public class DataBase {
 		return users;
 	}
 	
+	//INVENTORY METHODS
+	public ArrayList<Product> getInventoryFromDB(){
+		
+		return inventory.getInventory();
+	}
+	
+	//TASK METHODS
+	public void addTasks(Task t){
+		taskList.add(t);
+	}
+	
+	public String[] getTaskArray(){
+		
+		String[] tasks = new String[taskList.size()];
+		for(int i = 0; i < taskList.size(); i++){
+			tasks[i] = taskList.get(i).getTaskDescription();
+		}
+		return tasks;
+	}
+	
+	public ArrayList<Task> getTaskList(){
+		return taskList;
+	}
 }

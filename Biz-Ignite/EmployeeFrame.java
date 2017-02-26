@@ -13,49 +13,74 @@ public class EmployeeFrame extends JFrame{
 	
 	//DataBase Refrence
 	private DataBase data;
+	private Employee emp;
 	
 	//JComponenets
 	private JPanel taskPanel;
-	
 	private JLabel taskLabel;
-	private JTextArea txtBox;
+	private JScrollPane scroll;
+	private JList<Task> taskList;
 	private JButton completeButton;
 	
 	
 	//Constructor
-	public EmployeeFrame(String companyName, DataBase d){
+	public EmployeeFrame(DataBase d, Employee e){
 		
 		//initialize DataBase
 		this.data = d;
+		this.emp = e;
 		
 		//Initalize componenets
 		taskPanel = new JPanel();
 		taskPanel.setLayout(new BorderLayout());
 		taskLabel = new JLabel("Tasks");
-		txtBox = new JTextArea(2, 20);
+		taskList = new JList(data.getTaskArray());
+		scroll = new JScrollPane(taskList);
 		completeButton = new JButton("Completed Task");
 		completeButton.addActionListener(new CompleteButtonListener());
 		
 		//Add Componetents to panel and frame
 		taskPanel.add(taskLabel, BorderLayout.NORTH);
-		taskPanel.add(txtBox, BorderLayout.CENTER);
+		taskPanel.add(taskList, BorderLayout.CENTER);
 		taskPanel.add(completeButton, BorderLayout.SOUTH);
 		add(taskPanel);
 		
 		//Frame Setup
-		setTitle(companyName);
+		setTitle(e.getCompanyName());
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(700,700);
+		setSize(500,500);
+		//pack();
+		
 	}
 	
 	//Methods
+	public void displayTasks(){
+		ArrayList<Task> tList = data.getTaskList();
+		ArrayList<Task> finalList = new ArrayList<Task>();
+		
+		for(Task t: tList){
+			if(t.getAssignedEmp() == emp.getIdNum()){
+				finalList.add(t);
+				System.out.println("Element Added: " + t.getTaskDescription());
+			}
+		}
+		String[] tasks = new String[finalList.size()];
+		
+		for(int i = 0; i > finalList.size(); i++){
+			tasks[i] = finalList.get(i).getTaskDescription();
+		}
+	}
+	
+	public void markTaskCompleted(){
+		
+	}
 	
 	//ActionListeners
 	public class CompleteButtonListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e){
-			
+			displayTasks();
 		}
 	}
 }

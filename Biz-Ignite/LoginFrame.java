@@ -50,12 +50,14 @@ public class LoginFrame extends JFrame{
 		setTitle("Biz Ignite Login");
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(700,700);
+		setSize(300,200);
 		
 		
 	}
 	
 	//Methods
+
+	
 	public void authenticateUser(){
 		ArrayList<User> uList = data.getUsers();
 		boolean found = false;					// added boolean to check if account is found
@@ -70,7 +72,7 @@ public class LoginFrame extends JFrame{
 			} else if (userNameInput.getText().equals(u.getUserName()) && passwordInput.getText().equals(u.getPassword()) && u.getClearance() == false){
 				//Employee Frame will be opened and login frame will be close
 				System.out.println("Start Employee Frame");
-				EmployeeFrame empFrame = new EmployeeFrame(u.getCompanyName(), data);
+				new EmployeeFrame(data, data.getEmployee(userNameInput.getText(), passwordInput.getText()));
 				found = true;
 			}
 		}

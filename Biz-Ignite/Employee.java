@@ -11,6 +11,10 @@ public class Employee extends User{
 		this.idNum = id;
 	}
 	
+	public void addTask(Task t){
+		taskList.add(t);
+	}
+	
 	public int getIdNum(){
 		return idNum;
 	}
